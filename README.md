@@ -8,7 +8,7 @@ An ansible role that prepares Ubuntu for running simulations.
 
 ## Role Variables
 
-See `defaults/main.yml`
+See `defaults/main.yml`.
 
 ## Example Playbook
 
