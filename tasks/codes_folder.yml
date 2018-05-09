@@ -1,0 +1,11 @@
+- name: Create folder for codes
+  file:
+      path: "{{ simulationbase_codes_folder }}"
+      state: directory
+
+- name: clean archives of codes
+  shell: rm -f *.tar *.tar.gz *.zip *.bz2 *.aiida
+  ignore_errors: True
+  args:
+    chdir: "{{ simulationbase_codes_folder }}"
+  when: clean is defined and clean

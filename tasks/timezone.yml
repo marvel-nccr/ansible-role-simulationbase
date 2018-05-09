@@ -4,3 +4,6 @@
   become_user: "{{ root_user }}"
   timezone:
     name: Europe/Zurich
+  # For some reason this fails on travis with
+  # "given timezone \"Europe/Zurich\" is not available"
+  ignore_errors: True
