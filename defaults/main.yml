@@ -1,2 +1,4 @@
 ---
 simulationbase_hostname: localhost
+
+root_user: root
