@@ -1,4 +1,5 @@
 ---
 simulationbase_hostname: localhost
+simulationbase_on_docker: False
 
 root_user: root

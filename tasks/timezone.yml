@@ -4,6 +4,6 @@
   become_user: "{{ root_user }}"
   timezone:
     name: Europe/Zurich
-  # For some reason this fails on travis with
+  # This fails on docker with
   # "given timezone \"Europe/Zurich\" is not available"
-  ignore_errors: True
+  when: not simulationbase_on_docker

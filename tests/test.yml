@@ -1,4 +1,6 @@
 ---
 - hosts: localhost
   roles:
-  - simulationbase
+  - role: simulationbase
+    vars:
+        simulationbase_on_docker: True
