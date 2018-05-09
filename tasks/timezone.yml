@@ -1,0 +1,6 @@
+---
+- name: set timezone to Europe/Zurich
+  become: true
+  become_user: "{{ root_user }}"
+  timezone:
+    name: Europe/Zurich

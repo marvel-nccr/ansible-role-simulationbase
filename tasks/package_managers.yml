@@ -1,0 +1,27 @@
+---
+- name: Update repositories cache & upgrade packages
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+      upgrade: yes
+      cache_valid_time: 86400 #One day
+
+- name: Install apt & pip
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+      name: "{{item}}"
+      state: latest
+  with_items:
+      - aptitude
+      - python-pip
+      - python-dev
+  notify: apt clean
+
+- name: upgrade pip
+  become: true
+  become_user: "{{ root_user }}"
+  pip: 
+    name: pip
+    extra_args: --upgrade
+  notify: clean cache
