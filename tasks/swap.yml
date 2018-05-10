@@ -1,34 +1,30 @@
-# This causes the following error on docker 18.05.0~ce~3-0~ubuntu
-# Error response from daemon: container ... : driver "overlay2" failed to remove root filesystem: remove /var/lib/docker/overlay2/.../diff/swapfile: operation not permitted
-# See https://github.com/moby/moby/issues/4250#issuecomment-35566530
-- block:
-  - name: "Check if swapfile exists"
-    stat: path=/swapfile
-    register: swapfile_stat
-  
-  - name: "Create swapfile"
-    become: true
-    become_user: "{{ root_user }}"
-    command: "dd if=/dev/zero of=/swapfile bs=1M count=1024"
-    when: swapfile_stat.stat.exists == False
-  
-  - name: "Make the swapfile a valid swap"
-    become: true
-    become_user: "{{ root_user }}"
-    command: "mkswap /swapfile"
-    when: swapfile_stat.stat.exists == False
-  
-  - name: "Use the swapfile"
-    become: true
-    become_user: "{{ root_user }}"
-    command: "swapon /swapfile"
-    when: swapfile_stat.stat.exists == False
-  
-  - name: "Put a line in fstab to ensure swap is used at boot time"
-    become: true
-    become_user: "{{ root_user }}"
-    lineinfile: 
-      path: "/etc/fstab"
-      line: "/swapfile swap swap defaults 0 0"
-    when: swapfile_stat.stat.exists == False
-  when: cloud_platform != 'docker'
+---
+- name: "Check if swapfile exists"
+  stat: path=/swapfile
+  register: swapfile_stat
+
+- name: "Create swapfile"
+  become: true
+  become_user: "{{ root_user }}"
+  command: "dd if=/dev/zero of=/swapfile bs=1M count=1024"
+  when: swapfile_stat.stat.exists == False
+
+- name: "Make the swapfile a valid swap"
+  become: true
+  become_user: "{{ root_user }}"
+  command: "mkswap /swapfile"
+  when: swapfile_stat.stat.exists == False
+
+- name: "Use the swapfile"
+  become: true
+  become_user: "{{ root_user }}"
+  command: "swapon /swapfile"
+  when: swapfile_stat.stat.exists == False
+
+- name: "Put a line in fstab to ensure swap is used at boot time"
+  become: true
+  become_user: "{{ root_user }}"
+  lineinfile: 
+    path: "/etc/fstab"
+    line: "/swapfile swap swap defaults 0 0"
+  when: swapfile_stat.stat.exists == False

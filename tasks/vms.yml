@@ -1,0 +1,28 @@
+---
+- import_tasks: package_managers.yml
+  tags: simulationbase_package_managers
+
+- import_tasks: timezone.yml
+  tags: simulationbase_timezone
+
+- import_tasks: hostname.yml
+  tags: simulationbase_hostname
+
+- import_tasks: swap.yml
+  tags: simulationbase_swap
+
+- import_tasks: virtualenv.yml
+  tags: simulationbase_virtualenv
+
+- import_tasks: stacksize.yml
+  tags: simulationbase_stacksize
+
+- import_tasks: build_env.yml
+  tags: simulationbase_build_env
+
+- import_tasks: plotting.yml
+  tags: simulationbase_plotting
+
+- import_tasks: codes_folder.yml
+  tags: simulationbase_codes_folder
+
