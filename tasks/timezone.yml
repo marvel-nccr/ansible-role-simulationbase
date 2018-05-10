@@ -6,4 +6,4 @@
     name: Europe/Zurich
   # This fails on docker with
   # "given timezone \"Europe/Zurich\" is not available"
-  when: not simulationbase_on_docker
+  when: not cloud_platform is 'docker'

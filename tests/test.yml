@@ -3,4 +3,4 @@
   roles:
   - role: simulationbase
     vars:
-        simulationbase_on_docker: True
+        cloud_platform: docker

@@ -1,6 +1,6 @@
 ---
 simulationbase_hostname: localhost
-simulationbase_on_docker: False
 simulationbase_codes_folder: "${HOME}"
 
 root_user: root
+cloud_platform: vms

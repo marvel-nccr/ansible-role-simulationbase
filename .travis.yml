@@ -19,10 +19,9 @@ services:
   - docker
 
 before_install:
-  - sudo apt-get update
   - sudo docker --version
-  # upgrade docker to fix https://github.com/moby/moby/issues/34538#issuecomment-376172904
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+    #  - sudo apt-get update
+    #  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - 'sudo docker pull ${docker_image}:${version}'
 
 script:
