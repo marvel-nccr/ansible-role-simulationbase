@@ -31,4 +31,4 @@
       path: "/etc/fstab"
       line: "/swapfile swap swap defaults 0 0"
     when: swapfile_stat.stat.exists == False
-  when: not cloud_platform is 'docker'
+  when: cloud_platform != 'docker'
