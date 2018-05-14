@@ -15,7 +15,6 @@
       update_cache: True
   with_items:
     # Compilation
-    - linux-headers-{{ ansible_kernel }}
     - build-essential
     - python-passlib    
     - gfortran
