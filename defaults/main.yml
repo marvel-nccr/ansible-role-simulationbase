@@ -1,6 +1,7 @@
 ---
 simulationbase_hostname: localhost
 simulationbase_codes_folder: "${HOME}"
+simulationbase_scratch_folder: "/scratch"
 
 root_user: root
 cloud_platform: vms

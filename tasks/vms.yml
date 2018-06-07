@@ -23,6 +23,6 @@
 - import_tasks: plotting.yml
   tags: simulationbase_plotting
 
-- import_tasks: codes_folder.yml
-  tags: simulationbase_codes_folder
+- import_tasks: folders.yml
+  tags: simulationbase_folders
 

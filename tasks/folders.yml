@@ -1,7 +1,16 @@
+---
 - name: Create folder for codes
   file:
       path: "{{ simulationbase_codes_folder }}"
       state: directory
+
+- name: Create scratch directory for calculations
+  become: True
+  become_user: "{{ root_user }}"
+  file:
+      path: "{{ simulationbase_scratch_folder }}"
+      state: directory
+      mode: 1777
 
 - name: clean archives of codes
   shell: rm -f *.tar *.tar.gz *.zip *.bz2 *.aiida
