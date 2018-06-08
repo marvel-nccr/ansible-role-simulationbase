@@ -10,7 +10,7 @@
   file:
       path: "{{ simulationbase_scratch_folder }}"
       state: directory
-      mode: 1777
+      mode: 0777
 
 - name: clean archives of codes
   shell: rm -f *.tar *.tar.gz *.zip *.bz2 *.aiida
