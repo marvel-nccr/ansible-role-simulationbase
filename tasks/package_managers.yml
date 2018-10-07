@@ -10,12 +10,11 @@
   become: true
   become_user: "{{ root_user }}"
   apt:
-      name: "{{item}}"
-      state: latest
-  with_items:
+      name:
       - aptitude
       - python-pip
       - python-dev
+      state: latest
   notify: apt clean
 
 - name: upgrade pip
