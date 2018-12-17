@@ -3,18 +3,18 @@
   become: true
   become_user: "{{ root_user }}"
   apt:
-    name: 
-    # For plotting
-    - grace
-    - gnuplot
-    - python-tk 
-    - xcrysden
-    # note: jmol+java = 110MB
-    - jmol
-    - default-jre
+    name:
+      # For plotting
+      - grace
+      - gnuplot
+      - python-tk
+      - xcrysden
+      # note: jmol+java = 110MB
+      - jmol
+      - default-jre
     state: present
 
-- include_role: 
+- include_role:
     name: release_notes
   vars:
     section: "Plotting Tools"

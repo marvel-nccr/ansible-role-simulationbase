@@ -3,24 +3,23 @@
   become: true
   become_user: "{{ root_user }}"
   apt:
-      upgrade: yes
-      cache_valid_time: 86400 #One day
+    upgrade: true
+    cache_valid_time: 86400  # One day
 
 - name: Install apt & pip
   become: true
   become_user: "{{ root_user }}"
   apt:
-      name:
+    name:
       - aptitude
       - python-pip
       - python-dev
-      state: latest
   notify: apt clean
 
 - name: upgrade pip
   become: true
   become_user: "{{ root_user }}"
-  pip: 
+  pip:
     name: pip
     extra_args: --upgrade
   notify: clean cache

@@ -1,24 +1,24 @@
 ---
 - name: apt clean
-  become: True
+  become: true
   become_user: "{{ root_user }}"
   listen:
-  - apt clean
+    - apt clean
   apt:
-      autoclean: True
+    autoclean: true
 
 - name: remove ~/.cache
   listen:
-  - apt clean
-  - clean cache
+    - apt clean
+    - clean cache
   file:
     state: absent
     path: "${HOME}/.cache"
 
 - name: apt autoremove
-  become: True
+  become: true
   become_user: "{{ root_user }}"
   listen:
-  - apt clean
+    - apt clean
   apt:
-      autoremove: True
+    autoremove: true

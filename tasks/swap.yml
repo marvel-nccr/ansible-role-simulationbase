@@ -24,7 +24,7 @@
 - name: "Put a line in fstab to ensure swap is used at boot time"
   become: true
   become_user: "{{ root_user }}"
-  lineinfile: 
+  lineinfile:
     path: "/etc/fstab"
     line: "/swapfile swap swap defaults 0 0"
   when: swapfile_stat.stat.exists == False

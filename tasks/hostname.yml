@@ -1,9 +1,10 @@
+---
 - name: "get the machine hostname"
   become: true
   become_user: "{{ root_user }}"
   shell: "hostname"
   register: cur_hostname_command
-  changed_when: False
+  changed_when: false
 
 # This updates both the current hostname and /etc/hostname
 - name: "update machine hostname, if necessary"
@@ -15,7 +16,7 @@
 - name: "remove lines with 127.0.1.1, except for 127.0.1.1. localhost"
   become: true
   become_user: "{{ root_user }}"
-  lineinfile: 
+  lineinfile:
     path: "/etc/hosts"
     regexp: '^127\.0\.1\.1 (?!localhost)'
     state: absent
@@ -23,7 +24,7 @@
 - name: "set 127.0.1.1 to localhost (if it's set to the hostname, pbs server complains)"
   become: true
   become_user: "{{ root_user }}"
-  lineinfile: 
+  lineinfile:
     path: "/etc/hosts"
     regexp: '^127\.0\.1\.1'
     line: "127.0.1.1 localhost"
@@ -31,7 +32,7 @@
 - name: "set hostname for dynamic ip address in /etc/hosts (needed for PBS Torque)"
   become: true
   become_user: "{{ root_user }}"
-  lineinfile: 
+  lineinfile:
     path: "/etc/hosts"
     # lines ending with hostname
     regexp: "{{ simulationbase_hostname }}$"

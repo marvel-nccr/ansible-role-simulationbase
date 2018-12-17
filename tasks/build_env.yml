@@ -1,32 +1,32 @@
 ---
 - name: add toolchain repository for recent compiler versions
-  become: True
+  become: true
   become_user: "{{ root_user }}"
   apt_repository:
     repo: ppa:ubuntu-toolchain-r/test
     state: present
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
 
-- name: Install libraries
+- name: Install packages for build environment (apt)
   become: true
   become_user: "{{ root_user }}"
   apt:
-      name:
+    name:
       # Compilation
       - build-essential
-      - python-passlib    
+      - python-passlib
       - gfortran
       - openmpi-common
       - openmpi-bin
       - libopenmpi-dev
-      - libfftw3-dev 
-      - libfftw3-bin 
+      - libfftw3-dev
+      - libfftw3-bin
       - libfftw3-mpi-dev
       - liblapack-dev
       - libblas-dev
       - m4
-      state: latest
-      update_cache: True
+      - singularity
+    update_cache: true
 
 - include_role:
     name: release_notes
@@ -35,4 +35,3 @@
     option: "openmpi"
     value: "Run using 'mpirun <NUMPROCS> <EXECNAME>'"
   when: release_notes is defined and release_notes
-
