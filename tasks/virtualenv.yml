@@ -8,7 +8,7 @@
       - virtualenvwrapper
 
 - name: "Run virtualenvwrapper once to create folders"
-  shell: "bash /usr/local/bin/virtualenvwrapper.sh"
+  command: "bash /usr/local/bin/virtualenvwrapper.sh"
   args:
     creates: "${HOME}/.virtualenvs/initialize"
 

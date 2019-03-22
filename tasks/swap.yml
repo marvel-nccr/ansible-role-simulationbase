@@ -3,28 +3,28 @@
   stat: path=/swapfile
   register: swapfile_stat
 
-- name: "Create swapfile"
-  become: true
-  become_user: "{{ root_user }}"
-  command: "dd if=/dev/zero of=/swapfile bs=1M count=1024"
-  when: swapfile_stat.stat.exists == False
+- block:
 
-- name: "Make the swapfile a valid swap"
-  become: true
-  become_user: "{{ root_user }}"
-  command: "mkswap /swapfile"
-  when: swapfile_stat.stat.exists == False
+  - name: "Create swapfile"
+    become: true
+    become_user: "{{ root_user }}"
+    command: "dd if=/dev/zero of=/swapfile bs=1M count=1024"
 
-- name: "Use the swapfile"
-  become: true
-  become_user: "{{ root_user }}"
-  command: "swapon /swapfile"
-  when: swapfile_stat.stat.exists == False
+  - name: "Make the swapfile a valid swap"
+    become: true
+    become_user: "{{ root_user }}"
+    command: "mkswap /swapfile"
 
-- name: "Put a line in fstab to ensure swap is used at boot time"
-  become: true
-  become_user: "{{ root_user }}"
-  lineinfile:
-    path: "/etc/fstab"
-    line: "/swapfile swap swap defaults 0 0"
-  when: swapfile_stat.stat.exists == False
+  - name: "Use the swapfile"
+    become: true
+    become_user: "{{ root_user }}"
+    command: "swapon /swapfile"
+
+  - name: "Put a line in fstab to ensure swap is used at boot time"
+    become: true
+    become_user: "{{ root_user }}"
+    lineinfile:
+      path: "/etc/fstab"
+      line: "/swapfile swap swap defaults 0 0"
+
+  when: not swapfile_stat.stat.exists

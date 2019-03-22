@@ -2,7 +2,7 @@
 - name: "get the machine hostname"
   become: true
   become_user: "{{ root_user }}"
-  shell: "hostname"
+  command: "hostname"
   register: cur_hostname_command
   changed_when: false
 
@@ -10,7 +10,7 @@
 - name: "update machine hostname, if necessary"
   become: true
   become_user: "{{ root_user }}"
-  shell: "hostnamectl set-hostname {{ simulationbase_hostname }}"
+  hostname: "hostnamectl set-hostname {{ simulationbase_hostname }}"
   when: cur_hostname_command.stdout != simulationbase_hostname
 
 - name: "remove lines with 127.0.1.1, except for 127.0.1.1. localhost"
