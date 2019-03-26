@@ -6,7 +6,7 @@
     upgrade: true
     cache_valid_time: 86400  # One day
 
-- name: Install apt & pip
+- name: Install apt, pip and singularity-container
   become: true
   become_user: "{{ root_user }}"
   apt:
@@ -14,6 +14,7 @@
       - aptitude
       - python-pip
       - python-dev
+      - singularity-container
   notify: apt clean
 
 - name: upgrade pip
