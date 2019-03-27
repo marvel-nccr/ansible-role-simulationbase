@@ -1,4 +1,11 @@
 ---
+- name: Add key for neurodebian repo
+  become: true
+  become_user: "{{ root_user }}"
+  apt_key:
+    keyserver: hkp://pool.sks-keyservers.net:80
+    id: 0xA5D32F012649A5A9
+
 - name: Add neurodebian repo
   become: true
   become_user: "{{ root_user }}"
@@ -8,13 +15,6 @@
     - deb http://mirror.aarnet.edu.au/pub/neurodebian data main contrib non-free
     # ansible_distribution_release should be either "xenial" or "bionic"
     - deb http://mirror.aarnet.edu.au/pub/neurodebian {{ ansible_distribution_release }} main contrib non-free
-
-- name: Add key for neurodebian repo
-  become: true
-  become_user: "{{ root_user }}"
-  apt_key:
-    keyserver: hkp://pool.sks-keyservers.net:80
-    id: 0xA5D32F012649A5A9
 
 - name: Update repositories cache & upgrade packages
   become: true
