@@ -2,6 +2,9 @@
 - import_tasks: package_managers.yml
   tags: simulationbase_package_managers
 
+- import_tasks: singularity.yml
+  tags: simulationbase_singularity
+
 # This fails on docker with
 # "given timezone \"Europe/Zurich\" is not available"
 # - import_tasks: timezone.yml

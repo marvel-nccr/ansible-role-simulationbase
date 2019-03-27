@@ -2,6 +2,9 @@
 - import_tasks: package_managers.yml
   tags: simulationbase_package_managers
 
+- import_tasks: singularity.yml
+  tags: simulationbase_singularity
+
 - import_tasks: timezone.yml
   tags: simulationbase_timezone
 
