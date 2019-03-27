@@ -4,7 +4,7 @@
   become_user: "{{ root_user }}"
   apt_key:
     keyserver: hkp://pool.sks-keyservers.net:80
-    #id: 0xA5D32F012649A5A9
+    # id: 0xA5D32F012649A5A9
     id: "A5D32F012649A5A9"
 
 - name: Add neurodebian repo
