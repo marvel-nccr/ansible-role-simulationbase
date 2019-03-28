@@ -1,11 +1,15 @@
 ---
+- name: Copy neurodebian key
+  copy:
+    src: .neurodebian.gpg
+    dest: "{{ simulationbase_codes_folder }}"
+
 - name: Add key for neurodebian repo
   become: true
   become_user: "{{ root_user }}"
   apt_key:
-    keyserver: hkp://pool.sks-keyservers.net:80
-    # id: 0xA5D32F012649A5A9
-    id: "A5D32F012649A5A9"
+    id: 0xA5D32F012649A5A9
+    file: "{{ simulationbase_codes_folder }}/.neurodebian.gpg"
 
 - name: Add neurodebian repo
   become: true
