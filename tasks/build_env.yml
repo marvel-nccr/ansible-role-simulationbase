@@ -14,7 +14,7 @@
     name:
       # Compilation
       - build-essential
-      - python-passlib
+      - python3-passlib
       - gfortran
       - openmpi-common
       - openmpi-bin

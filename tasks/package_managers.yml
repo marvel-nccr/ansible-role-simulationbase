@@ -12,8 +12,8 @@
   apt:
     name:
       - aptitude
-      - python-pip
-      - python-dev
+      - python3-pip
+      - python3-dev
   notify: apt clean
 
 - name: upgrade pip
