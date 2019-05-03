@@ -12,9 +12,21 @@
   apt:
     name:
       - aptitude
+      - python-pip
+      - python-dev
+  notify: apt clean
+  when: ansible_python_version < 3
+
+- name: Install apt, pip3
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+    name:
+      - aptitude
       - python3-pip
       - python3-dev
   notify: apt clean
+  when: ansible_python_version >= 3
 
 - name: upgrade pip
   become: true

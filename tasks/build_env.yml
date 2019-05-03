@@ -28,6 +28,23 @@
       - singularity
     update_cache: true
 
+- name: Install python-passlib (apt)
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+    name:
+      # Compilation
+      - python3-passlib
+  when: ansible_python_version < 3
+
+- name: Install python3-passlib (apt)
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+    name:
+      - python3-passlib
+  when: ansible_python_version >= 3
+
 - include_role:
     name: release_notes
   vars:
