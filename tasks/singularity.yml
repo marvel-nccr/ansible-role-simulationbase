@@ -13,11 +13,11 @@
   apt_repository:
     repo: "{{ item }}"
   with_items:
-    - deb http://mirror.aarnet.edu.au/pub/neurodebian data main contrib non-free
+    - deb http://neurodebian.g-node.org data main contrib non-free
     # ansible_distribution_release should be either "xenial" or "bionic"
-    - deb http://mirror.aarnet.edu.au/pub/neurodebian {{ ansible_distribution_release }} main contrib non-free
+    - deb http://neurodebian.g-node.org {{ ansible_distribution_release }} main contrib non-free
 
-- name: Update repositories cache & upgrade packages
+- name: Update repositories cache & install singularity
   become: true
   become_user: "{{ root_user }}"
   apt:
