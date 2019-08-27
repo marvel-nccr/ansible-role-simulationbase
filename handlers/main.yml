@@ -1,7 +1,6 @@
 ---
 - name: apt clean
   become: true
-  become_user: "{{ root_user }}"
   listen:
     - apt clean
   apt:
@@ -17,7 +16,6 @@
 
 - name: apt autoremove
   become: true
-  become_user: "{{ root_user }}"
   listen:
     - apt clean
   apt:
@@ -25,6 +23,5 @@
 
 - name: apt upgrade
   become: true
-  become_user: "{{ root_user }}"
   apt:
     upgrade: true
