@@ -1,7 +1,6 @@
 ---
 - name: "get the machine hostname"
   become: true
-  become_user: "{{ root_user }}"
   command: "hostname"
   register: cur_hostname_command
   changed_when: false
@@ -9,14 +8,12 @@
 # This updates both the current hostname and /etc/hostname
 - name: "update machine hostname, if necessary"
   become: true
-  become_user: "{{ root_user }}"
   hostname:
     name: "{{ simulationbase_hostname }}"
   when: cur_hostname_command.stdout != simulationbase_hostname
 
 - name: "remove lines with 127.0.1.1, except for 127.0.1.1. localhost"
   become: true
-  become_user: "{{ root_user }}"
   lineinfile:
     path: "/etc/hosts"
     regexp: '^127\.0\.1\.1 (?!localhost)'
@@ -26,7 +23,6 @@
     set 127.0.1.1 to localhost (if it's set to the hostname,
     pbs server complains)
   become: true
-  become_user: "{{ root_user }}"
   lineinfile:
     path: "/etc/hosts"
     regexp: '^127\.0\.1\.1'

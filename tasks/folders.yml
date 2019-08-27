@@ -6,7 +6,6 @@
 
 - name: Create scratch directory for calculations
   become: true
-  become_user: "{{ root_user }}"
   file:
     path: "{{ simulationbase_scratch_folder }}"
     state: directory

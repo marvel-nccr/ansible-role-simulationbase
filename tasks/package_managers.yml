@@ -1,14 +1,12 @@
 ---
 - name: Update repositories cache & upgrade packages
   become: true
-  become_user: "{{ root_user }}"
   apt:
     cache_valid_time: 86400  # One day
   notify: apt upgrade
 
 - name: Install apt, pip
   become: true
-  become_user: "{{ root_user }}"
   apt:
     name:
       - aptitude
@@ -19,7 +17,6 @@
 
 - name: Install apt, pip3
   become: true
-  become_user: "{{ root_user }}"
   apt:
     name:
       - aptitude
@@ -30,7 +27,6 @@
 
 - name: upgrade pip
   become: true
-  become_user: "{{ root_user }}"
   pip:
     name: pip
     extra_args: --upgrade

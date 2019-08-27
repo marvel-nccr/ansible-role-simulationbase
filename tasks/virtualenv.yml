@@ -1,7 +1,6 @@
 ---
 - name: add packages (pip)
   become: true
-  become_user: "{{ root_user }}"
   pip:
     name:
       - virtualenv
