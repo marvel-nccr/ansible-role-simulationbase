@@ -26,5 +26,8 @@
 - import_tasks: plotting.yml
   tags: simulationbase_plotting
 
+- import_tasks: atomic.yml
+  tags: simulationbase_atomic
+
 - import_tasks: folders.yml
   tags: simulationbase_folders
