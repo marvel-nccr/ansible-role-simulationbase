@@ -6,6 +6,14 @@
       - virtualenv
       - virtualenvwrapper
 
+# This is where `pip install --user` adds executables
+- name: Add ~/.local/bin to the PATH
+  become: true
+  become_user: "{{ simulationbase_vm_user }}"
+  lineinfile:
+    path: "${HOME}/.bashrc"
+    line: "export PATH=PATH:${HOME}/.local/bin"
+
 - name: "Run virtualenvwrapper once to create folders"
   become: true
   become_user: "{{ simulationbase_vm_user }}"
