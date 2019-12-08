@@ -1,5 +1,7 @@
 ---
 - name: Create folder for codes
+  become: true
+  become_user: "{{ simulationbase_vm_user }}"
   file:
     path: "{{ simulationbase_codes_folder }}"
     state: directory
