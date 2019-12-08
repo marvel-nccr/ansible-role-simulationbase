@@ -12,7 +12,7 @@
   become_user: "{{ simulationbase_vm_user }}"
   lineinfile:
     path: "${HOME}/.bashrc"
-    line: "export PATH=PATH:${HOME}/.local/bin"
+    line: "export PATH=$PATH:${HOME}/.local/bin"
 
 - name: "Run virtualenvwrapper once to create folders"
   become: true
