@@ -12,10 +12,3 @@
     path: "{{ simulationbase_scratch_folder }}"
     state: directory
     mode: 0777
-
-- name: clean archives of codes
-  shell: rm -f *.tar *.tar.gz *.zip *.bz2 *.aiida
-  ignore_errors: true
-  args:
-    chdir: "{{ simulationbase_codes_folder }}"
-  when: clean is defined and clean
