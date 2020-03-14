@@ -21,6 +21,19 @@
   args:
     creates: "${HOME}/.virtualenvs/initialize"
 
+- name: set ansible_python_interpreter if unset
+  block:
+    - name: set ansible python interpreter
+      set_fact:
+        ansible_python_interpreter: '/usr/bin/python'
+      when: ansible_python_version is version('3', '<')
+
+    - name: set ansible python interpreter
+      set_fact:
+        ansible_python_interpreter: '/usr/bin/python3'
+      when: ansible_python_version is version('3', '>=')
+  when: ansible_python_interpreter is not defined
+
 # This fixes https://github.com/marvel-nccr/marvel-virtualmachine/issues/21
 # Note: this is needed for the 'workon' command and thus needs to go in the .bashrc
 - name: "Fix virtualenvwrapper python executable"

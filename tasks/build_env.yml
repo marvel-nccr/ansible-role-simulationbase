@@ -12,7 +12,6 @@
     name:
       # Compilation
       - build-essential
-      - python3-passlib
       - gfortran
       - openmpi-common
       - openmpi-bin
@@ -30,8 +29,7 @@
   become: true
   apt:
     name:
-      # Compilation
-      - python3-passlib
+      - python-passlib
   when: ansible_python_version is version('3', '<')
 
 - name: Install python3-passlib (apt)
