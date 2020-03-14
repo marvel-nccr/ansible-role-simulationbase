@@ -28,7 +28,8 @@
   become_user: "{{ simulationbase_vm_user }}"
   lineinfile:
     path: "${HOME}/.bashrc"
-    line: "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python"
+    regexp: "export VIRTUALENVWRAPPER_PYTHON=.*"
+    line: "export VIRTUALENVWRAPPER_PYTHON={{ ansible_python_interpreter }}"
 
 # For safety, also put this into .profile (in case this is needed by non-interactive shells)
 - name: "Fix virtualenvwrapper python executable"
@@ -36,7 +37,8 @@
   become_user: "{{ simulationbase_vm_user }}"
   lineinfile:
     path: "${HOME}/.profile"
-    line: "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python"
+    regexp: "export VIRTUALENVWRAPPER_PYTHON=.*"
+    line: "export VIRTUALENVWRAPPER_PYTHON={{ ansible_python_interpreter }}"
 
 # Note: this provides the 'workon' command and thus needs to go in the .bashrc
 - name: "Activate the virtualenvwrapper for the user"
