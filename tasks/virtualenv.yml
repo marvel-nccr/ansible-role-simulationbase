@@ -17,7 +17,7 @@
 - name: "Run virtualenvwrapper once to create folders"
   become: true
   become_user: "{{ simulationbase_vm_user }}"
-  command: "source /usr/local/bin/virtualenvwrapper.sh"
+  command: "/usr/local/bin/virtualenvwrapper.sh"
   args:
     creates: "${HOME}/.virtualenvs/initialize"
 
