@@ -14,13 +14,6 @@
     path: "${HOME}/.bashrc"
     line: "export PATH=$PATH:${HOME}/.local/bin"
 
-- name: "Run virtualenvwrapper once to create folders"
-  become: true
-  become_user: "{{ simulationbase_vm_user }}"
-  command: "/usr/local/bin/virtualenvwrapper.sh"
-  args:
-    creates: "${HOME}/.virtualenvs/initialize"
-
 - name: set ansible_python_interpreter if unset
   block:
     - name: set ansible python interpreter
@@ -33,6 +26,13 @@
         ansible_python_interpreter: '/usr/bin/python3'
       when: ansible_python_version is version('3', '>=')
   when: ansible_python_interpreter is not defined
+
+- name: "Run virtualenvwrapper once to create folders"
+  become: true
+  become_user: "{{ simulationbase_vm_user }}"
+  shell: "VIRTUALENVWRAPPER_PYTHON={{ ansible_python_interpreter }} bash /usr/local/bin/virtualenvwrapper.sh"
+  args:
+    creates: "${HOME}/.virtualenvs/initialize"
 
 # This fixes https://github.com/marvel-nccr/marvel-virtualmachine/issues/21
 # Note: this is needed for the 'workon' command and thus needs to go in the .bashrc

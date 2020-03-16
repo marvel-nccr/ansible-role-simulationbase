@@ -6,7 +6,7 @@ driver:
 lint: |
   set -e
   yamllint .
-  ansible-lint -x 302
+  ansible-lint -x 302 -x 305
 platforms:
   - name: instance
     image: "${DOCKER_IMAGE:-marvelnccr/ubuntu-docker-base}:${DOCKER_IMAGE_VERSION:-latest}"
