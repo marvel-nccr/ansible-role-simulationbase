@@ -14,10 +14,23 @@
     path: "${HOME}/.bashrc"
     line: "export PATH=$PATH:${HOME}/.local/bin"
 
+- name: set ansible_python_interpreter if unset
+  block:
+    - name: set ansible python interpreter
+      set_fact:
+        ansible_python_interpreter: '/usr/bin/python'
+      when: ansible_python_version is version('3', '<')
+
+    - name: set ansible python interpreter
+      set_fact:
+        ansible_python_interpreter: '/usr/bin/python3'
+      when: ansible_python_version is version('3', '>=')
+  when: ansible_python_interpreter is not defined
+
 - name: "Run virtualenvwrapper once to create folders"
   become: true
   become_user: "{{ simulationbase_vm_user }}"
-  command: "bash /usr/local/bin/virtualenvwrapper.sh"
+  shell: "VIRTUALENVWRAPPER_PYTHON={{ ansible_python_interpreter }} bash /usr/local/bin/virtualenvwrapper.sh"
   args:
     creates: "${HOME}/.virtualenvs/initialize"
 
@@ -28,7 +41,8 @@
   become_user: "{{ simulationbase_vm_user }}"
   lineinfile:
     path: "${HOME}/.bashrc"
-    line: "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python"
+    regexp: "export VIRTUALENVWRAPPER_PYTHON=.*"
+    line: "export VIRTUALENVWRAPPER_PYTHON={{ ansible_python_interpreter }}"
 
 # For safety, also put this into .profile (in case this is needed by non-interactive shells)
 - name: "Fix virtualenvwrapper python executable"
@@ -36,7 +50,8 @@
   become_user: "{{ simulationbase_vm_user }}"
   lineinfile:
     path: "${HOME}/.profile"
-    line: "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python"
+    regexp: "export VIRTUALENVWRAPPER_PYTHON=.*"
+    line: "export VIRTUALENVWRAPPER_PYTHON={{ ansible_python_interpreter }}"
 
 # Note: this provides the 'workon' command and thus needs to go in the .bashrc
 - name: "Activate the virtualenvwrapper for the user"
