@@ -2,11 +2,11 @@
   become: true
   apt:
     name:
-      # For plotting
+    # For plotting
     - grace
     - gnuplot
     - xcrysden
-      # note: jmol+java = 110MB
+    # note: jmol+java = 110MB
     - jmol
     - default-jre
     state: present
