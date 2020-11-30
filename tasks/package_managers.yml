@@ -1,4 +1,3 @@
----
 - name: Update repositories cache & upgrade packages
   become: true
   apt:
@@ -9,9 +8,9 @@
   become: true
   apt:
     name:
-      - aptitude
-      - python-pip
-      - python-dev
+    - aptitude
+    - python-pip
+    - python-dev
   notify: apt clean
   when: ansible_python_version is version('3', '<')
 
@@ -19,9 +18,9 @@
   become: true
   apt:
     name:
-      - aptitude
-      - python3-pip
-      - python3-dev
+    - aptitude
+    - python3-pip
+    - python3-dev
   notify: apt clean
   when: ansible_python_version is version('3', '>=')
 

@@ -1,15 +1,14 @@
----
 - name: apt clean
   become: true
   listen:
-    - apt clean
+  - apt clean
   apt:
     autoclean: true
 
 - name: remove ~/.cache
   listen:
-    - apt clean
-    - clean cache
+  - apt clean
+  - clean cache
   file:
     state: absent
     path: "${HOME}/.cache"
@@ -17,7 +16,7 @@
 - name: apt autoremove
   become: true
   listen:
-    - apt clean
+  - apt clean
   apt:
     autoremove: true
 

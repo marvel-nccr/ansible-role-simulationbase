@@ -1,9 +1,8 @@
----
 - name: Install atomistic tools
   become: true
   pip:
     name:
-      - cif2cell
+    - cif2cell
     state: present
 
 - include_role:

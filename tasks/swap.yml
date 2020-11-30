@@ -1,4 +1,3 @@
----
 - name: "Check if swapfile exists"
   stat: path=/swapfile
   register: swapfile_stat
