@@ -3,7 +3,7 @@
 
 - import_tasks: singularity.yml
   tags: simulationbase_singularity
-  when: cloud_platform != 'docker'
+  when: cloud_platform != 'docker'  # TODO this is failing on GH
 
 - block:
   # This fails on docker with
