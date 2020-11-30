@@ -1,3 +1,9 @@
+- name: Create man directory
+  when: cloud_platform == 'docker'
+  file:
+    path: /usr/share/man/man1
+    state: directory
+
 - name: Install plotting tools, etc.
   become: true
   apt:
@@ -5,7 +11,6 @@
     # For plotting
     - grace
     - gnuplot
-    - python-tk
     - xcrysden
     # note: jmol+java = 110MB
     - jmol
