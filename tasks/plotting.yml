@@ -5,6 +5,7 @@
     # For plotting
     - grace
     - gnuplot
+    - python-tk
     - xcrysden
     # note: jmol+java = 110MB
     - jmol
