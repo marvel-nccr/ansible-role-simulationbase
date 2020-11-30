@@ -1,4 +1,3 @@
----
 - import_tasks: package_managers.yml
   tags: simulationbase_package_managers
 
@@ -7,8 +6,11 @@
 
 - block:
   # This fails on docker with
-  # "given timezone \"Europe/Zurich\" is not available"
-  - import_tasks: timezone.yml
+  # "given timezone is not available"
+  - name: set timezone to {{ simulationbase_tmz }}
+    become: true
+    timezone:
+      name: "{{ simulationbase_tmz }}"
     tags: simulationbase_timezone
 
   # Note: docker does not allow to edit /etc/hosts
@@ -23,9 +25,6 @@
   - import_tasks: swap.yml
     tags: simulationbase_swap
   when: cloud_platform != 'docker'
-
-- import_tasks: virtualenv.yml
-  tags: simulationbase_virtualenv
 
 - import_tasks: stacksize.yml
   tags: simulationbase_stacksize

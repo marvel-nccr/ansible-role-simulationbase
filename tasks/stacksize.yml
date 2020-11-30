@@ -1,4 +1,3 @@
----
 # this is needed by many codes...
 - name: set stack size to unlimited
   become: true
