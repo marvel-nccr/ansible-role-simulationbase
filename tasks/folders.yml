@@ -11,3 +11,10 @@
     path: "{{ simulationbase_scratch_folder }}"
     state: directory
     mode: 0777
+
+- name: Add ~/.local/bin to the PATH  # for pip install --user
+  become: true
+  become_user: "{{ simulationbase_vm_user }}"
+  lineinfile:
+    path: "${HOME}/.bashrc"
+    line: "export PATH=$PATH:${HOME}/.local/bin"
