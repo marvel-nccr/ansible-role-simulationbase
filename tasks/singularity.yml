@@ -3,7 +3,7 @@
   become: true
   apt_key:
     id: 'DD95CC430502E37EF840ACEEA5D32F012649A5A9'
-    keyserver: hkp://pool.sks-keyservers.net
+    keyserver: hkp://keyserver.ubuntu.com
 
 - name: Add neurodebian repo
   become: true
