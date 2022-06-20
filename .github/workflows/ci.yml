@@ -27,7 +27,7 @@ jobs:
 
     strategy:
       matrix:
-        distro: [ubuntu1604, ubuntu1804, ubuntu2004]
+        distro: [ubuntu1804, ubuntu2004]
       fail-fast: false
 
     runs-on: ubuntu-latest
@@ -67,6 +67,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: robertdebock/galaxy-action@1.0.3
+    - uses: robertdebock/galaxy-action@1.2.1
       with:
         galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
